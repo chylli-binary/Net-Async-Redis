@@ -527,7 +527,7 @@ sub execute_command {
     };
     return $code->() if $self->{stream} and ($self->{is_multi} or 0 == @{$self->{pending_multi}});
     return (
-        $self->{_is_multi}
+        !$self->{_is_multi}
         ? $self->connected
         : Future->wait_all(
             $self->connected,
